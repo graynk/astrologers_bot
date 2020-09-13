@@ -1,5 +1,6 @@
 from textwrap import TextWrapper
 
+
 class DocumentWrapper(TextWrapper):
 
     def wrap(self, text):
