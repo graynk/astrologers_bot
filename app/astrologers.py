@@ -1,5 +1,4 @@
-from image import render_image
-from io import BytesIO
+from image import get_image_bytes
 from hashlib import sha1
 from telegram import Update
 from telegram import InlineQueryResultCachedPhoto
@@ -30,11 +29,8 @@ def astrologize(update: Update, context: CallbackContext):
     if not text_renderable(text):
         update.effective_message.reply_text('У тебя там символы какие-то непонятные')
         return
-    rendered_image = render_image(text)
-    img_file = BytesIO()
-    rendered_image.save(img_file, 'png')
-    img_file.seek(0)
-    update.effective_message.reply_photo(photo=img_file)
+    rendered_image = get_image_bytes(text)
+    update.effective_message.reply_photo(photo=rendered_image)
 
 
 def astrologize_inline(update: Update, context: CallbackContext):
@@ -48,7 +44,7 @@ def astrologize_inline(update: Update, context: CallbackContext):
             InlineQueryResultCachedPhoto('symbol_error', photo_file_id=message.photo[0].file_id)
         ])
         return
-    rendered_image = render_image(text)
+    rendered_image = get_image_bytes(text)
     message = context.bot.send_photo(chat_id=ARCHIVE_ID, photo=rendered_image)
     query_cache_id = sha1(query.query.encode('utf-8')).hexdigest()
     update.inline_query.answer([

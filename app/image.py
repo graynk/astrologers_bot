@@ -1,3 +1,4 @@
+from io import BytesIO
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
@@ -109,3 +110,11 @@ def render_image(text):
     spliced = splice(background, frame)
     result = add_text(spliced, text)
     return result
+
+
+def get_image_bytes(text):
+    rendered_image = render_image(text)
+    img_file = BytesIO()
+    rendered_image.save(img_file, 'png')
+    img_file.seek(0)
+    return img_file
