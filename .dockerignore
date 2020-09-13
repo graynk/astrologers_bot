@@ -1,5 +1,6 @@
 .idea/
 .git/
-__pycache__/
+app/__pycache__/
 README.MD
 info.jpg
+params.env
