@@ -22,11 +22,6 @@ def text_renderable(text):
 
 def wrap_text(text):
     length = len(text)
-    if length < 2000:
-        width = 50
-    elif length < 3000:
-        width = 90
-    else:
-        width = 120
+    width = 50 + 40 * int(length / 3000)
     wrapper = DocumentWrapper(width=width)
     return wrapper.wrap(text)

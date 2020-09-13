@@ -1,4 +1,5 @@
 from image import render_image
+from io import BytesIO
 from hashlib import sha1
 from telegram import Update
 from telegram import InlineQueryResultCachedPhoto
@@ -30,7 +31,10 @@ def astrologize(update: Update, context: CallbackContext):
         update.effective_message.reply_text('У тебя там символы какие-то непонятные')
         return
     rendered_image = render_image(text)
-    update.effective_message.reply_photo(photo=rendered_image)
+    img_file = BytesIO()
+    rendered_image.save(img_file, 'png')
+    img_file.seek(0)
+    update.effective_message.reply_photo(photo=img_file)
 
 
 def astrologize_inline(update: Update, context: CallbackContext):

@@ -26,3 +26,8 @@ docker run -d \
     --env-file params.env \
     graynk/astrologers_bot
 ```
+
+### Стендэлон режим
+Можно просто передать текстовый файл на вход, игнорируя всю часть с ботом:
+
+`python3 standalone.py file.txt`

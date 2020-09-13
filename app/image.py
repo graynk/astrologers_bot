@@ -1,7 +1,6 @@
 from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
-from io import BytesIO
 from text import wrap_text
 import math
 
@@ -109,7 +108,4 @@ def render_image(text):
     background = construct_fill(frame.size)
     spliced = splice(background, frame)
     result = add_text(spliced, text)
-    img_file = BytesIO()
-    result.save(img_file, 'png')
-    img_file.seek(0)
-    return img_file
+    return result
