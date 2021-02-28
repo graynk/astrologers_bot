@@ -24,8 +24,10 @@ docker run -d \
     --restart unless-stopped \
     --name astrologers_bot \
     --env-file params.env \
-    graynk/astrologers_bot
+    ghcr.io/graynk/astrologers_bot:latest
 ```
+
+Можно обойтись и без докера, и создать venv, но для правильного разбиения по строкам еще придется поставить `libraqm`
 
 ### Стендэлон режим
 Можно просто передать текстовый файл на вход, игнорируя всю часть с ботом:

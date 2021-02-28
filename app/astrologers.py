@@ -12,7 +12,7 @@ from text import text_renderable
 import os
 
 TOKEN = os.environ['ASTROLOGERS_BOT_TOKEN']
-ARCHIVE_ID = os.environ['ASTROLOGERS_PRIVATE_CHANNEL']
+ARCHIVE_ID = int(os.environ['ASTROLOGERS_PRIVATE_CHANNEL'])
 updater = Updater(TOKEN, use_context=True)
 dispatcher = updater.dispatcher
 
