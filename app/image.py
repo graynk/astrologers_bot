@@ -37,9 +37,9 @@ ok_bot_offset = vert_border_height + 30 + ok.height
 
 
 def calculate_frame_size(text):
-    text_size = calculation_draw.textsize(text, font)
-    return max(text_size[0] + padding[0] + 2 * side_border_width - spacing_size, 100), \
-           max(text_size[1] + padding[1] + 2 * vert_border_height + ok_bot_offset, 100)
+    text_size = calculation_draw.textbbox((0, 0), text, font)
+    return max(text_size[2] + padding[0] + 2 * side_border_width - spacing_size, 100), \
+           max(text_size[3] + padding[1] + 2 * vert_border_height + ok_bot_offset, 100)
 
 
 def construct_frame(size):
@@ -95,9 +95,9 @@ def splice(background, frame):
 def add_text(image, text):
     draw = ImageDraw.Draw(image)
     draw.fontmode = '1'
-    size = draw.textsize(text, font)
-    middle_width = (image.width - size[0] + spacing_size) / 2
-    middle_height = (image.height - size[1] - padding_bot - ok_bot_offset + padding_top) / 2
+    size = draw.textbbox((0, 0), text, font)
+    middle_width = (image.width - size[2] + spacing_size) / 2
+    middle_height = (image.height - size[3] - padding_bot - ok_bot_offset + padding_top) / 2
     draw.text((middle_width, middle_height), text, (255, 255, 255), font=font, align='center')
     return image
 
