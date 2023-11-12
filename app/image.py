@@ -16,7 +16,7 @@ rb = Image.open('interface/rb.png')
 ok = Image.open('interface/ok.png')
 fill = Image.open('interface/fill.png')
 
-font = ImageFont.truetype('times-new-roman.ttf', 12)
+font = ImageFont.truetype('font.ttf', 12)
 calculation_image = Image.new(mode='RGB', size=(1, 1))
 calculation_draw = ImageDraw.Draw(calculation_image)
 

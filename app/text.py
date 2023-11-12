@@ -2,7 +2,7 @@ from line_wrapper import DocumentWrapper
 from fontTools.ttLib import TTFont
 
 # allowed_symbols = re.compile(r'[^a-zA-Zа-яА-Я0-9,.!?\[\]:\n ]')
-font = TTFont('times-new-roman.ttf')
+font = TTFont('font.ttf')
 
 
 def char_in_font(unicode_char):
