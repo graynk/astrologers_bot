@@ -1,4 +1,4 @@
-defmodule AstrologersBot.EchoTextChain do
+defmodule AstrologersBot.ChatPicChain do
   @moduledoc false
 
   use Telegex.Chain, :message
@@ -13,13 +13,16 @@ defmodule AstrologersBot.EchoTextChain do
   def match?(_message, _context), do: true
 
   @impl true
-  def handle(%{chat: chat, text: text} = _message, context) do
+  def handle(%{chat: %{id: chat_id}} = _message, context) do
+    {:ok, %Telegex.Type.Message{photo: [%{file_id: file_id} | _]}} =
+      Telegex.send_photo(AstrologersBot.archive_id(), "app/interface/ok.png")
+
     context = %{
       context
       | payload: %{
-          method: "sendMessage",
-          chat_id: chat.id,
-          text: text
+          method: "sendPhoto",
+          chat_id: chat_id,
+          photo: file_id
         }
     }
 

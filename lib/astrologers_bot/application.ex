@@ -7,18 +7,11 @@ defmodule AstrologersBot.Application do
 
   @impl true
   def start(_type, _args) do
-    updates_handler =
-      if AstrologersBot.work_mode() == :webhook do
-        AstrologersBot.UpdatesAngler
-      else
-        AstrologersBot.UpdatesPoller
-      end
-
     children = [
       # Starts a worker by calling: AstrologersBot.Worker.start_link(arg)
       # {AstrologersBot.Worker, arg}
 
-      updates_handler
+      AstrologersBot.UpdatesPoller
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

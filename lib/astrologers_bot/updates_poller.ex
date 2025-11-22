@@ -17,7 +17,9 @@ defmodule AstrologersBot.UpdatesPoller do
 
   @impl true
   def on_update(update) do
-    AstrologersBot.ChainHandler.call(update, %AstrologersBot.ChainContext{bot: Telegex.Instance.bot()})
+    AstrologersBot.ChainHandler.call(update, %AstrologersBot.ChainContext{
+      bot: Telegex.Instance.bot()
+    })
   end
 
   @impl true

@@ -3,8 +3,6 @@ defmodule AstrologersBot.RespStartChain do
 
   use Telegex.Chain, {:command, :start}
 
-  alias Telegex.Type.{InlineKeyboardMarkup, InlineKeyboardButton}
-
   @impl true
   def match?(%{text: text, chat: %{type: "private"}}, _context) when text != nil do
     String.starts_with?(text, @command)
@@ -14,29 +12,22 @@ defmodule AstrologersBot.RespStartChain do
   def match?(_message, _context), do: false
 
   @impl true
-  def handle(%{chat: chat, text: _text} = _message, context) do
-    markup = %InlineKeyboardMarkup{
-      inline_keyboard: [
-        [
-          %InlineKeyboardButton{
-            text: "Hello",
-            callback_data: "hello:v1"
-          }
-        ]
-      ]
-    }
-
-    send_hello = %{
+  def handle(
+        %{chat: %{id: chat_id}, text: _text} = _message,
+        %{bot: %{username: bot_name}} = context
+      ) do
+    send_reply = %{
       method: "sendMessage",
-      chat_id: chat.id,
-      text:
-        "*Hello*\n\n😇 You can learn more from here: [telegex/telegex](https://github.com/telegex/telegex)\\.",
-      reply_markup: markup,
+      chat_id: chat_id,
+      text: """
+      Send me the text you need Hero\\-ized and I'll send you a pic back\\.
+      It also works in the inline mode, just type `@#{bot_name} amogus` right in the message field \\(but there's a severe length limit there\\)\\.
+      """,
       parse_mode: "MarkdownV2",
       disable_web_page_preview: true
     }
 
-    context = %{context | payload: send_hello}
+    context = %{context | payload: send_reply}
 
     {:done, context}
   end

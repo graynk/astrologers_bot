@@ -5,8 +5,7 @@ defmodule AstrologersBot.ChainHandler do
 
   pipeline([
     AstrologersBot.RespStartChain,
-    AstrologersBot.RespPingChain,
-    AstrologersBot.EchoTextChain,
-    AstrologersBot.CallHelloChain
+    AstrologersBot.ChatPicChain,
+    AstrologersBot.InlinePicChain
   ])
 end
