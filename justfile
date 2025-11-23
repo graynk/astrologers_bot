@@ -12,6 +12,12 @@ test:
 run:
     mix run --no-halt
 
+dialyzer:
+    mix dialyzer
+
+credo:
+    mix credo
+
 iex:
     iex -S mix
 
