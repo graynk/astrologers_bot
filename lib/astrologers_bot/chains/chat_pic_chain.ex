@@ -10,12 +10,15 @@ defmodule AstrologersBot.ChatPicChain do
   end
 
   @impl true
-  def match?(_message, _context), do: true
+  def match?(%{text: text} = _message, _context), do: String.length(text) < 750
 
   @impl true
-  def handle(%{chat: %{id: chat_id}} = _message, context) do
+  def handle(%{chat: %{id: chat_id}, text: text} = _message, context) do
+    # I see no good way to avoid writing the image to a file. Telegex documentation is not exactly forthcoming.
+    file_name = AstrologersBot.ImageFrame.write_image!(text)
+
     {:ok, %Telegex.Type.Message{photo: [%{file_id: file_id} | _]}} =
-      Telegex.send_photo(AstrologersBot.archive_id(), "app/interface/ok.png")
+      Telegex.send_photo(AstrologersBot.archive_id(), file_name)
 
     context = %{
       context

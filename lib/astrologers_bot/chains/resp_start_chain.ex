@@ -21,7 +21,8 @@ defmodule AstrologersBot.RespStartChain do
       chat_id: chat_id,
       text: """
       Send me the text you need Hero\\-ized and I'll send you a pic back\\.
-      It also works in the inline mode, just type `@#{bot_name} amogus` right in the message field \\(but there's a severe length limit there\\)\\.
+
+      It also works in the inline mode, just type "`@#{bot_name} amogus`" right in the message field \\(but there's a severe length limit there\\)\\.
       """,
       parse_mode: "MarkdownV2",
       disable_web_page_preview: true

@@ -26,7 +26,9 @@ defmodule AstrologersBot.MixProject do
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:telegex, "~> 1.9.0-rc.0"},
       {:finch, "~> 0.20.0"},
-      {:multipart, "~> 0.4.0"}
+      {:multipart, "~> 0.4.0"},
+      {:image, "~> 0.62.1"},
+      {:textwrap, "~> 0.4.0"}
     ]
   end
 end

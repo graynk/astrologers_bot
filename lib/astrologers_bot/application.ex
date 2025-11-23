@@ -7,6 +7,8 @@ defmodule AstrologersBot.Application do
 
   @impl true
   def start(_type, _args) do
+    AstrologersBot.ImageFrame.Assets.load!()
+
     children = [
       # Starts a worker by calling: AstrologersBot.Worker.start_link(arg)
       # {AstrologersBot.Worker, arg}
