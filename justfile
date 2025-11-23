@@ -3,11 +3,17 @@
 deps:
     mix deps.get
 
+deps_unlock:
+    mix deps.clean --unused --unlock
+
 test:
     mix test
 
 run:
     mix run --no-halt
+
+iex:
+    iex -S mix
 
 format:
     mix format
