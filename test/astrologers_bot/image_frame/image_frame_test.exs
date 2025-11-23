@@ -36,9 +36,8 @@ defmodule AstrologersBot.ImageFrame.ImageFrameTest do
     assert text_to_image_hash(input) == image_to_hash(input)
   end
 
-  # TODO: support big blocks, currently crashes somewhere in libvips
-  # test "should support big multi-block texts" do
-  #   input = "big_lorem_ipsum"
-  #   assert text_to_image_hash(input) == image_to_hash(input)
-  # end
+  test "should support big multi-block texts" do
+    input = "big_lorem_ipsum"
+    assert text_to_image_hash(input) == image_to_hash(input)
+  end
 end

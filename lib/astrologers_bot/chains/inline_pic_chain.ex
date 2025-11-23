@@ -4,7 +4,7 @@ defmodule AstrologersBot.InlinePicChain do
   use Telegex.Chain, :inline_query
 
   @impl true
-  def match?(%{query: text} = _query, _context), do: String.length(text) < 750
+  def match?(_query, _context), do: true
 
   @impl true
   def handle(query, context) do

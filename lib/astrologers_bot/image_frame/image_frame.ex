@@ -135,17 +135,27 @@ defmodule AstrologersBot.ImageFrame do
       Enum.reduce(0..(vert_border_count - 1), dst, fn i, acc ->
         x = corner_width + i * vert_border_width
 
-        acc
-        |> Image.compose!(Assets.get(:bot), x: x, y: :bottom)
-        |> Image.compose!(Assets.get(:top), x: x, y: :top)
+        {:ok, img} =
+          acc
+          |> Image.compose!(Assets.get(:bot), x: x, y: :bottom)
+          |> Image.compose!(Assets.get(:top), x: x, y: :top)
+          # https://github.com/akash-akya/vix/issues/203#issuecomment-3530839006
+          |> Vix.Vips.Image.copy_memory()
+
+        img
       end)
 
     Enum.reduce(0..(side_border_count - 1), dst, fn i, acc ->
       y = corner_height + i * side_border_height
 
-      acc
-      |> Image.compose!(Assets.get(:left), x: :left, y: y)
-      |> Image.compose!(Assets.get(:right), x: :right, y: y)
+      {:ok, img} =
+        acc
+        |> Image.compose!(Assets.get(:left), x: :left, y: y)
+        |> Image.compose!(Assets.get(:right), x: :right, y: y)
+        # https://github.com/akash-akya/vix/issues/203#issuecomment-3530839006
+        |> Vix.Vips.Image.copy_memory()
+
+      img
     end)
   end
 
@@ -164,7 +174,12 @@ defmodule AstrologersBot.ImageFrame do
     dst =
       Enum.reduce(0..h//fill_h, dst, fn y, acc_y ->
         Enum.reduce(0..w//fill_w, acc_y, fn x, acc_x ->
-          Image.compose!(acc_x, Assets.get(:fill), x: x, y: y)
+          {:ok, img} =
+            Image.compose!(acc_x, Assets.get(:fill), x: x, y: y)
+            # https://github.com/akash-akya/vix/issues/203#issuecomment-3530839006
+            |> Vix.Vips.Image.copy_memory()
+
+          img
         end)
       end)
 

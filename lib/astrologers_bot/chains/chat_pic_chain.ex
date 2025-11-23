@@ -10,7 +10,7 @@ defmodule AstrologersBot.ChatPicChain do
   end
 
   @impl true
-  def match?(%{text: text} = _message, _context), do: String.length(text) < 750
+  def match?(_message, _context), do: true
 
   @impl true
   def handle(%{chat: %{id: chat_id}, text: text} = _message, context) do
